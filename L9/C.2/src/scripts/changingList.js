@@ -1,5 +1,7 @@
 import renderTasks from './render';
-import { createTask, getTasks, updateTask, deleteTask } from './tasksGateway';
+import {
+  createTask, getTasks, updateTask, deleteTask,
+} from './tasksGateway';
 
 const inputElem = document.querySelector('.task-input');
 
@@ -17,15 +19,15 @@ export const addNewElem = () => {
   inputElem.value = '';
 };
 
-export const turnElChecked = event => {
+export const turnElChecked = (event) => {
   const isCheckbox = event.target.classList.contains('list__item-checkbox');
   if (!isCheckbox) {
     return;
   }
 
   const taskId = event.target.dataset.id;
-  getTasks().then(tasksList => {
-    const taskById = tasksList.find(task => task.id === taskId);
+  getTasks().then((tasksList) => {
+    const taskById = tasksList.find((task) => task.id === taskId);
     const done = event.target.checked;
     const { text, addDate } = taskById;
 
@@ -39,15 +41,15 @@ export const turnElChecked = event => {
   });
 };
 
-export const onDeleteTask = event => {
+export const onDeleteTask = (event) => {
   const isDeleteEl = event.target.classList.contains('list__item-delete');
   if (!isDeleteEl) {
     return;
   }
 
   const taskId = event.target.dataset.id;
-  getTasks().then(tasksList => {
-    const taskById = tasksList.find(task => task.id === taskId);
+  getTasks().then((tasksList) => {
+    const taskById = tasksList.find((task) => task.id === taskId);
 
     deleteTask(taskById.id).then(() => renderTasks());
   });

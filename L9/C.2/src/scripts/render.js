@@ -3,7 +3,7 @@ import { getTasks } from './tasksGateway';
 const listElem = document.querySelector('.list');
 
 export default () => {
-  getTasks().then(tasksList => {
+  getTasks().then((tasksList) => {
     listElem.innerHTML = '';
     const tasksElems = tasksList
       .sort((a, b) => a.done - b.done)
